@@ -1,0 +1,39 @@
+---
+import config from '../config/config.json';
+import { normalizePath } from '../lib/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { site } = config;
+const {
+  title,
+  description = site.description,
+  image = site.ogImage,
+  type = 'website',
+  noindex = false,
+} = Astro.props;
+
+const fullTitle = title ? `${title}${site.titleSeparator}${site.title}` : site.title;
+const canonical = Astro.site ? new URL(normalizePath(Astro.url.pathname), Astro.site).href : undefined;
+const imageUrl = Astro.site ? new URL(image, Astro.site).href : image;
+---
+
+<title>{fullTitle}</title>
+<meta content={description} name="description" />
+<meta content={fullTitle} property="og:title" />
+<meta content={description} property="og:description" />
+<meta content={imageUrl} property="og:image" />
+<meta content={fullTitle} name="twitter:title" />
+<meta content={description} name="twitter:description" />
+<meta content={imageUrl} name="twitter:image" />
+<meta property="og:type" content={type} />
+{canonical && <meta property="og:url" content={canonical} />}
+{canonical && <link rel="canonical" href={canonical} />}
+<meta content="summary_large_image" name="twitter:card" />
+{noindex && <meta name="robots" content="noindex" />}

@@ -1,0 +1,72 @@
+---
+/**
+ * Renders Strapi "blocks" rich text as plain HTML, using the same markup as the
+ * template's rich text (images become full-width figures), so the
+ * .blog-details-rich-text styles apply exactly as before.
+ */
+import type { BlockNode } from '../../lib/strapi';
+import { mediaUrl } from '../../lib/strapi';
+
+interface Props {
+  nodes: BlockNode[];
+}
+
+const { nodes } = Astro.props;
+
+const escape = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+function inline(node: BlockNode): string {
+  if (node.type === 'text') {
+    let html = escape(node.text ?? '').replace(/\n/g, '<br>');
+    if (node.code) html = `<code>${html}</code>`;
+    if (node.bold) html = `<strong>${html}</strong>`;
+    if (node.italic) html = `<em>${html}</em>`;
+    if (node.underline) html = `<u>${html}</u>`;
+    if (node.strikethrough) html = `<s>${html}</s>`;
+    return html;
+  }
+  if (node.type === 'link') {
+    const external = /^https?:\/\//.test(node.url ?? '');
+    const attrs = external ? ' target="_blank" rel="noopener"' : '';
+    return `<a href="${escape(node.url ?? '#')}"${attrs}>${children(node)}</a>`;
+  }
+  return children(node);
+}
+
+function children(node: BlockNode): string {
+  return (node.children ?? []).map((child) => (child.type === 'list-item' ? `<li>${children(child)}</li>` : block(child))).join('');
+}
+
+function block(node: BlockNode): string {
+  switch (node.type) {
+    case 'paragraph':
+      return `<p>${children(node)}</p>`;
+    case 'heading': {
+      const level = Math.min(Math.max(node.level ?? 2, 1), 6);
+      return `<h${level}>${children(node)}</h${level}>`;
+    }
+    case 'list': {
+      const tag = node.format === 'ordered' ? 'ol' : 'ul';
+      return `<${tag}>${children(node)}</${tag}>`;
+    }
+    case 'quote':
+      return `<blockquote>${children(node)}</blockquote>`;
+    case 'code':
+      return `<pre><code>${escape((node.children ?? []).map((c) => c.text ?? '').join(''))}</code></pre>`;
+    case 'image': {
+      const img = node.image;
+      if (!img) return '';
+      // No width/height attributes: the theme sizes the image by width only,
+      // so a fixed height would stretch it on narrow screens.
+      return `<figure class="w-richtext-align-fullwidth w-richtext-figure-type-image"><div><img alt="${escape(img.alternativeText ?? '')}" src="${escape(mediaUrl(img.url))}" loading="lazy"></div></figure>`;
+    }
+    default:
+      return inline(node);
+  }
+}
+
+const html = nodes.map(block).join('');
+---
+
+<Fragment set:html={html} />

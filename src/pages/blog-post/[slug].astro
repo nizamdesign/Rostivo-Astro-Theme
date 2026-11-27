@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostHeroSection from '../../components/sections/blog-post/PostHeroSection.astro';
+import PostContentSection from '../../components/sections/blog-post/PostContentSection.astro';
+import RelatedPostsSection from '../../components/sections/blog-post/RelatedPostsSection.astro';
+import CtaSection from '../../components/sections/shared/CtaSection.astro';
+import config from '../../config/config.json';
+import { getBlogPostsWithContent, mediaUrl, type BlogPost } from '../../lib/strapi';
+
+export async function getStaticPaths() {
+  const posts = await getBlogPostsWithContent();
+  return posts.map((post, index) => {
+    // The posts after this one (newest first), wrapping round to the start.
+    const others = [...posts.slice(index + 1), ...posts.slice(0, index)];
+    return { params: { slug: post.slug }, props: { post, related: others.slice(0, config.blog.relatedCount) } };
+  });
+}
+
+interface Props {
+  post: BlogPost;
+  related: BlogPost[];
+}
+
+const { post, related } = Astro.props;
+---
+
+<BaseLayout
+  title={post.title}
+  description={post.metaDescription ?? undefined}
+  image={post.coverImage ? mediaUrl(post.coverImage.url) : undefined}
+  type="article"
+  pageId="67148b8afc0f1a701aeec098"
+>
+  <main>
+    <PostHeroSection post={post} />
+    <PostContentSection content={post.content} />
+    <RelatedPostsSection posts={related} />
+    <CtaSection />
+  </main>
+</BaseLayout>

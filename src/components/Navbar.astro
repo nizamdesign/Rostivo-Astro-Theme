@@ -1,0 +1,81 @@
+---
+import menu from '../config/menu.json';
+import { currentAttrs, resolveUrl } from '../lib/utils';
+
+const path = Astro.url.pathname;
+const { navbar } = menu;
+const home = currentAttrs('/', path);
+const button = currentAttrs(navbar.button.url, path);
+
+const columns = await Promise.all(
+  navbar.dropdown.columns.map((column) =>
+    Promise.all(column.map(async (link) => ({ ...link, url: await resolveUrl(link.url) }))),
+  ),
+);
+---
+
+<nav class="navbar">
+  <div class="container-default relative-up">
+    <div data-w-id="2656183b-db20-d91d-5e40-2af8c9c574ae" class="navbar-wrapper">
+      <div class="menu-icon-wrapper">
+        <div class="nav-menu-button">
+          <div data-w-id="2656183b-db20-d91d-5e40-2af8c9c574b1" class="nav-menu-button-line-wrapper">
+            <div class="menu-button-first-line"></div>
+            <div class="menu-button-second-line"></div>
+            <div class="menu-button-third-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="site-logo-wrapper">
+        <a href="/" aria-current={home.ariaCurrent} class={`site-logo-link-block nav w-inline-block${home.currentClass}`}><img src="/images/rystro_logo.svg" loading="lazy" alt="rystro_logo" class="site-logo" /></a>
+      </div>
+      <div class="nav-button-wrapper">
+        <a data-w-id="139fea38-16a8-e3e4-ecf1-9eb6780f33b2" href={navbar.button.url} aria-current={button.ariaCurrent} class={`primary-button w-inline-block${button.currentClass}`}>
+          <div class="button-text-block">
+            <div class="button-text">{navbar.button.name}</div>
+            <div class="button-text">{navbar.button.name}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="full-screen-menu">
+    <div class="full-screen-menu-container">
+      <div class="full-screen-menu-wrapper">
+        <div class="menu-items-wrapper">
+          {navbar.links.map((link) => {
+            const c = currentAttrs(link.url, path);
+            return (
+              <a data-w-id={link.interactionId} href={link.url} aria-current={c.ariaCurrent} class={`menu-item-block w-inline-block${c.currentClass}`}>
+                <div class="nav-item-circle"></div>
+                <div class="menu-item-text-wrapper">
+                  <div class="menu-item-text">{link.name}</div>
+                </div>
+              </a>
+            );
+          })}
+          <div data-hover="true" data-delay="400" data-w-id="d119cedd-f357-5ce5-4778-56bc91849c38" class="menu-item-block menu-dropdown-wrapper w-dropdown">
+            <div data-w-id="d119cedd-f357-5ce5-4778-56bc91849c39" class="menu-item-text-wrapper w-dropdown-toggle">
+              <div class="nav-item-circle"></div>
+              <div class="menu-item-text">{navbar.dropdown.label}</div>
+            </div>
+            <nav class="menu-item-dropdown-list w-dropdown-list">
+              <div class="dropdown-item-wrapper">
+                {columns.map((column) => (
+                  <div class="dropdown-item-block">
+                    {column.map((link) => {
+                      const c = currentAttrs(link.url, path);
+                      return (
+                        <a href={link.url} aria-current={c.ariaCurrent} class={`dropdown-link w-dropdown-link${c.currentClass}`}>{link.name}</a>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

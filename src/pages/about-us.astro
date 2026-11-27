@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/about/HeroSection.astro';
+import GeneralSection from '../components/sections/about/GeneralSection.astro';
+import MenuPreviewSection from '../components/sections/shared/MenuPreviewSection.astro';
+import InteriorSection from '../components/sections/about/InteriorSection.astro';
+import BlogPreviewSection from '../components/sections/shared/BlogPreviewSection.astro';
+import ChefPreviewSection from '../components/sections/shared/ChefPreviewSection.astro';
+import CtaSection from '../components/sections/shared/CtaSection.astro';
+import { aboutSchema } from '../lib/schema';
+---
+
+<BaseLayout title="About Us" pageId="67148a9a19815227751aab17" jsonLd={aboutSchema(Astro.site)}>
+  <main>
+    <HeroSection />
+    <GeneralSection />
+    <MenuPreviewSection variant="about" />
+    <InteriorSection />
+    <BlogPreviewSection />
+    <ChefPreviewSection />
+    <CtaSection />
+  </main>
+</BaseLayout>

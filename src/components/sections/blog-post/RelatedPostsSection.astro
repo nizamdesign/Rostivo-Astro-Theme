@@ -1,0 +1,30 @@
+---
+import BlogList from '../../blog/BlogList.astro';
+import type { BlogPost } from '../../../lib/strapi';
+
+interface Props {
+  posts: BlogPost[];
+}
+
+const { posts } = Astro.props;
+---
+<section class="blog-section">
+  <div class="blog-section-bg bottom-margin">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="blog-wrapper">
+        <div class="more-blog-heading-wrap">
+          <div class="section-title-block relative">
+            <div data-w-id="101971df-abdc-9734-77a1-90b3698755f5" style="-webkit-transform:translate3d(-100%, -100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, -100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, -100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, -100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="subtitle-block more-blog">
+              <div class="subtitle tertiary-centre">
+                <div class="dot primary-color"></div>
+                <div class="subtitle-text text-color-primary">More BLOGS</div>
+              </div>
+            </div>
+            <h2 data-w-id="941c5a36-5280-7e78-7531-c8f2d3930e9b" style="-webkit-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="blog-section-title">More related blogs</h2>
+          </div>
+        </div>
+        <BlogList posts={posts} variant="related" />
+      </div>
+    </div>
+  </div>
+</section>

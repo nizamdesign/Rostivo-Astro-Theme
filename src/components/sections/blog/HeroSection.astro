@@ -1,0 +1,57 @@
+---
+import { resolveUrl } from '../../../lib/utils';
+
+// The featured card links to the newest post.
+const featuredUrl = await resolveUrl('@latest-blog-post');
+---
+
+<section class="hero-section">
+  <div class="blog-hero-bg">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="blog-hero-content-wrap">
+        <div class="hero-title-block max-w-920">
+          <div data-w-id="44a4fc4b-51f8-3b40-b148-bde8d059028f" style="-webkit-transform:translate3d(-100%, -100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, -100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, -100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, -100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="subtitle-block blogs-page">
+            <div class="subtitle blogs">
+              <div class="dot"></div>
+              <div class="subtitle-text">oUR BLOGS</div>
+            </div>
+          </div>
+          <h1 data-w-id="ed4f1c22-4bbf-5c1c-27ad-6a9145173840" style="-webkit-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="page-intro-text text-color-white-two mobile-sm">Your Source for Culinary Inspiration, News, and Tips</h1>
+        </div>
+        <div class="active-blog-wrapper is-1">
+          <div class="active-blog-image-wrap"></div>
+          <div data-w-id="a821b960-90c3-8cac-1f1c-84011c014f46" style="opacity:0" class="subtitle-block blog-details">
+            <div class="subtitle blog-details">
+              <div class="dot"></div>
+              <div class="subtitle-text">Featured blog</div>
+            </div>
+          </div>
+          <div class="active-blog-content-wrap">
+            <div class="active-blog-text-wrap">
+              <div class="active-blog-info-wrap">
+                <div data-w-id="ed4f1c22-4bbf-5c1c-27ad-6a914517384a" style="-webkit-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="active-blog-info">NOV 22, 2023</div>
+                <div data-w-id="ed4f1c22-4bbf-5c1c-27ad-6a914517384c" style="-webkit-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="dot white-color-two"></div>
+                <a data-w-id="ed4f1c22-4bbf-5c1c-27ad-6a914517384d" style="-webkit-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" href="#" class="active-blog-info">Restaurant</a>
+              </div>
+              <a href={featuredUrl} class="active-blog-title-wrap w-inline-block">
+                <h2 data-w-id="ed4f1c22-4bbf-5c1c-27ad-6a9145173850" style="-webkit-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="active-blog-title">Behind the Scenes with Chef John: Crafting Our Signature Dishes</h2>
+              </a>
+            </div>
+            <div class="active-blog-button-wrap">
+              <a aria-label="Active Blog Spin Button" href={featuredUrl} class="active-blog-spin-button w-inline-block">
+                <div aria-label="Spin Button Icon" class="spin-button-icon-one events-none w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 29 29" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                    <path d="M0.330078 2.07507L27.9953 2.07507" stroke="currentColor" stroke-width="3.45815"></path>
+                    <path d="M26.7383 28.4833L26.7383 0.818047" stroke="currentColor" stroke-width="3.45815"></path>
+                    <path d="M26.7383 2.07507L1.58807 27.2253" stroke="currentColor" stroke-width="3.45815"></path>
+                  </svg></div>
+                <div aria-label="Spin Button Content" data-w-id="ed4f1c22-4bbf-5c1c-27ad-6a9145173855" class="loop-button-shape blog w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 117 122" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                    <path d="M49.5466 5.45897C53.6348 -0.858429 62.878 -0.858429 66.9662 5.45897L68.6582 8.07353C71.3262 12.1964 76.5195 13.8838 81.1013 12.1166L84.0069 10.9958C91.0276 8.28796 98.5055 13.7209 98.0997 21.2348L97.9317 24.3446C97.6668 29.2482 100.876 33.6659 105.622 34.9293L108.631 35.7305C115.903 37.6665 118.759 46.4572 114.014 52.2975L112.051 54.7146C108.954 58.5261 108.954 63.9866 112.051 67.7981L114.014 70.2153C118.759 76.0556 115.903 84.8463 108.631 86.7822L105.622 87.5835C100.876 88.8469 97.6668 93.2645 97.9317 98.1682L98.0997 101.278C98.5055 108.792 91.0276 114.225 84.0069 111.517L81.1013 110.396C76.5195 108.629 71.3262 110.316 68.6581 114.439L66.9662 117.054C62.878 123.371 53.6348 123.371 49.5466 117.054L47.8546 114.439C45.1866 110.316 39.9933 108.629 35.4115 110.396L32.5059 111.517C25.4851 114.225 18.0073 108.792 18.4131 101.278L18.5811 98.1682C18.846 93.2645 15.6363 88.8469 10.8908 87.5835L7.88136 86.7822C0.60983 84.8463 -2.24645 76.0556 2.49842 70.2153L4.46217 67.7981C7.55876 63.9867 7.55876 58.5261 4.46217 54.7146L2.49842 52.2975C-2.24645 46.4572 0.60983 37.6665 7.88136 35.7305L10.8908 34.9293C15.6363 33.6659 18.846 29.2482 18.5811 24.3446L18.4131 21.2348C18.0073 13.7209 25.4851 8.28796 32.5059 10.9958L35.4115 12.1166C39.9933 13.8838 45.1866 12.1964 47.8546 8.07353L49.5466 5.45897Z" fill="currentColor"></path>
+                  </svg></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

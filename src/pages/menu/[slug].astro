@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MenuDetailsHeroSection from '../../components/sections/menu-item/MenuDetailsHeroSection.astro';
+import MenuTabsSection from '../../components/sections/shared/MenuTabsSection.astro';
+import CtaSection from '../../components/sections/shared/CtaSection.astro';
+import { getMenuItems, mediaUrl, type MenuItem } from '../../lib/strapi';
+
+export async function getStaticPaths() {
+  const items = await getMenuItems();
+  return items.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+interface Props {
+  item: MenuItem;
+}
+
+const { item } = Astro.props;
+---
+
+<BaseLayout
+  title={item.title}
+  description={item.description || item.shortDescription}
+  image={item.image ? mediaUrl(item.image.url) : undefined}
+  pageId="67148b7d19815227751af96e"
+>
+  <main>
+    <MenuDetailsHeroSection item={item} />
+    <MenuTabsSection />
+    <CtaSection />
+  </main>
+</BaseLayout>

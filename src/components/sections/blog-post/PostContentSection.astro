@@ -1,0 +1,22 @@
+---
+import RichText from '../../blog/RichText.astro';
+import type { BlocksContent } from '../../../lib/strapi';
+
+interface Props {
+  content: BlocksContent | null | undefined;
+}
+
+const { content } = Astro.props;
+---
+
+<section class="blog-details-section">
+  <div class="blog-details-section-gap">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="blog-details-wrapper">
+        <div class="details-rich-text-wrap">
+          <div data-w-id="40003ef7-9f29-1480-4b5b-69a21f156876" style="opacity:0" class="blog-details-rich-text w-richtext"><RichText nodes={content ?? []} /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

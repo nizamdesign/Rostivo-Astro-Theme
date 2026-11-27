@@ -1,0 +1,90 @@
+---
+/**
+ * A blog post card. The three variants reproduce the three card styles of the
+ * template, including the interaction IDs and initial animation states.
+ */
+import type { BlogPost } from '../../lib/strapi';
+import { mediaUrl } from '../../lib/strapi';
+import { formatDate, postUrl } from '../../lib/utils';
+
+interface Props {
+  post: BlogPost;
+  /** preview: home and about sections. list: Blog page grid. related: post page. */
+  variant: 'preview' | 'list' | 'related';
+}
+
+const { post, variant } = Astro.props;
+const href = postUrl(post.slug);
+const src = post.coverImage ? mediaUrl(post.coverImage.url) : undefined;
+const alt = post.coverImage?.alternativeText || 'Blog Image';
+const date = formatDate(post.date);
+
+const imageStyle =
+  '-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)';
+---
+
+{variant === 'preview' && (
+  <div role="listitem" class="blog-collection-item w-dyn-item">
+    <div data-w-id="ab557866-5725-0fb0-df4b-d73f5ea25c8c" class="blog-post-wrapper">
+      <div class="blog-image-wrap">
+        <a href={href} class="blog-image-link w-inline-block"><img src={src} loading="lazy" alt={alt} class="blog-image" /></a>
+      </div>
+      <div class="blog-content-wrap">
+        <div class="blog-details-wrap">
+          <div class="blog-publish-date">{date}</div>
+          <div class="dot tertiary-color"></div>
+          <div class="blog-category">{post.category}</div>
+        </div>
+        <div class="blog-title-wrap">
+          <a href={href} class="blog-title-link w-inline-block">
+            <h6 class="blog-title">{post.title}</h6>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+{variant === 'list' && (
+  <div data-w-id="c0f3f581-69ac-4cbf-5942-96417dfaaecb" style="opacity:0" role="listitem" class="blog-collection-item w-dyn-item">
+    <div data-w-id="c0f3f581-69ac-4cbf-5942-96417dfaaecc" class="blog-post-wrapper is-2">
+      <div class="blog-image-wrap">
+        <a aria-label="Blog Image Link" href={href} class="blog-image-link w-inline-block"><img style={imageStyle} loading="lazy" alt={alt} src={src} class="blog-image" /></a>
+      </div>
+      <div class="blog-content-wrap">
+        <div class="blog-details-wrap">
+          <div class="blog-publish-date is-2">{date}</div>
+          <div class="dot text-color-quaternary"></div>
+          <div class="blog-category is-2">{post.category}</div>
+        </div>
+        <div class="blog-title-wrap">
+          <a aria-label="Blog Title Link" href={href} class="blog-title-link w-inline-block">
+            <h3 style="color:rgb(41,98,81)" class="blog-title is-2">{post.title}</h3>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+{variant === 'related' && (
+  <div role="listitem" class="blog-collection-item w-dyn-item">
+    <div data-w-id="941c5a36-5280-7e78-7531-c8f2d3930ea4" style="opacity:0" class="blog-post-wrapper">
+      <div class="blog-image-wrap">
+        <a aria-label="Blog Image Link" href={href} class="blog-image-link w-inline-block"><img style={imageStyle} loading="lazy" alt={alt} src={src} class="blog-image" /></a>
+      </div>
+      <div class="blog-content-wrap">
+        <div class="blog-details-wrap">
+          <div class="blog-publish-date">{date}</div>
+          <div class="dot tertiary-color"></div>
+          <div class="blog-category">{post.category}</div>
+        </div>
+        <div class="blog-title-wrap">
+          <a aria-label="Blog Title Link" href={href} class="blog-title-link w-inline-block">
+            <h3 style="color:rgb(253,248,230)" class="blog-title">{post.title}</h3>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+)}

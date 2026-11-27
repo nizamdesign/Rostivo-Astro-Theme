@@ -1,0 +1,15 @@
+---
+import BlogList from '../../blog/BlogList.astro';
+import { getBlogPosts } from '../../../lib/strapi';
+
+const posts = await getBlogPosts();
+---
+<section class="blog-section">
+  <div class="section-gap upper-extra-gap is-blog">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="blog-wrapper">
+        <BlogList posts={posts} variant="list" />
+      </div>
+    </div>
+  </div>
+</section>

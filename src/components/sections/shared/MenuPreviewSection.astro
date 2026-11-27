@@ -1,0 +1,53 @@
+---
+import MenuCard from '../../menu/MenuCard.astro';
+import config from '../../../config/config.json';
+import { getMenuItems } from '../../../lib/strapi';
+
+interface Props {
+  /** The home page lifts the section over the hero ("up-scale") and adds a shadow. */
+  variant?: 'home' | 'about';
+}
+
+const { variant = 'home' } = Astro.props;
+const items = (await getMenuItems()).slice(0, config.menu.previewCount);
+const sectionClass = variant === 'home' ? 'menu-section up-scale' : 'menu-section';
+const bgClass = variant === 'home' ? 'menu-bg shadow' : 'menu-bg';
+---
+
+<section class={sectionClass}>
+  <div class={bgClass}>
+    <div class="section-gap">
+      <div class="w-layout-blockcontainer container-default w-container">
+        <div class="menu-wrapper">
+          <div class="section-title-block max-w-430">
+            <div data-w-id="fae46ac3-8a23-a792-2693-f764ca7f9e96" class="subtitle-block menu">
+              <div class="subtitle menu">
+                <div class="dot"></div>
+                <div class="subtitle-text">Our menu</div>
+              </div>
+            </div>
+            <h2 data-w-id="fae46ac3-8a23-a792-2693-f764ca7f9e9b" class="section-title text-color-white-two align-middle">Our Signature Creations</h2>
+          </div>
+          <div class="menu-content-block">
+            <div class="menu-collection-list-wrapper w-dyn-list">
+              {items.length > 0 ? (
+                <div role="list" class="menu-collection-list w-dyn-items">
+                  {items.map((item) => <MenuCard item={item} variant="preview" />)}
+                </div>
+              ) : (
+                <div class="w-dyn-empty">
+                  <div>No items found.</div>
+                </div>
+              )}
+            </div>
+          </div>
+          <div class="menu-button-block">
+            <a href="/menu" class="menu-button w-inline-block">
+              <div class="menu-button-text">Our menu</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

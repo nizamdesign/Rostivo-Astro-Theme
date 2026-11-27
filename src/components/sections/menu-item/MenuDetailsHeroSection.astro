@@ -1,0 +1,55 @@
+---
+import type { MenuItem } from '../../../lib/strapi';
+import { mediaUrl } from '../../../lib/strapi';
+import { dishLabel, splitColumns } from '../../../lib/utils';
+
+interface Props {
+  item: MenuItem;
+}
+
+const { item } = Astro.props;
+const columns = splitColumns(item.ingredients ?? []);
+---
+
+<section class="menu-details-hero-section">
+  <div class="menu-details-hero-bg">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="hero-content-wrapper h-flex">
+        <div class="menu-hero-text-wrapper">
+          <div class="hero-heading-block">
+            <div class="hero-title-block">
+              <h1 class="page-intro-text text-color-tertiary">{item.title}</h1>
+            </div>
+            <div class="hero-description-block">
+              <p class="body-text-sm text-color-white-two">{item.description || item.shortDescription}</p>
+            </div>
+          </div>
+          {columns[0].length > 0 && (
+            <div class="ingredients-block">
+              <div class="ingredients-title-block">
+                <div class="ingredients-title">Ingredients:</div>
+              </div>
+              <div class="ingredients-item-column-block w-row">
+                {columns.map((column) => (
+                  <div class="ingredients-item-column w-col w-col-6">
+                    {column.map((ingredient) => (
+                      <div class="ingredients-item">
+                        <div class="ingredients-dot-point"></div>
+                        <p class="body-text-lg text-color-white-two">{ingredient.name}</p>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+        <div class="menu-hero-image-wrapper"><img src={item.image ? mediaUrl(item.image.url) : '/images/Menu-Details-Image.png'} loading="lazy" alt={item.image?.alternativeText || 'Menu Details Image'} class="menu-details-image" />
+          <div class="dish-number-block details-page">
+            <div class="dish-no details-page">{dishLabel(item.dishNumber)}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

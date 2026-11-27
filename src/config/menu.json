@@ -1,0 +1,71 @@
+{
+  "_comment": "URLs starting with @ are filled in at build time: @latest-blog-post links to the newest post, @first-menu-item to the first dish. interactionId keeps each link's hover animation; new links can reuse any existing one.",
+  "navbar": {
+    "button": { "name": "Book a table", "url": "/book-a-table" },
+    "links": [
+      { "name": "Home", "url": "/", "interactionId": "d9bc31bf-f87e-b7f4-903a-5e52e2edd6f5" },
+      { "name": "About", "url": "/about-us", "interactionId": "d5a1709d-0a31-91f8-377e-31e7742f00ee" },
+      { "name": "Menu", "url": "/menu", "interactionId": "0549c071-6774-ae10-1ca5-6738ab684d29" },
+      { "name": "Blog", "url": "/blog", "interactionId": "1986568a-1528-487c-c111-bd9b82ad0e94" },
+      { "name": "Chef", "url": "/chef", "interactionId": "9f9a6e5b-c2dd-9219-c9cd-22732fb9cd6a" }
+    ],
+    "dropdown": {
+      "label": "Pages",
+      "columns": [
+        [
+          { "name": "Blog Details", "url": "@latest-blog-post" },
+          { "name": "Book A Table", "url": "/book-a-table" },
+          { "name": "Style Guide", "url": "/utility-pages/style-guide" },
+          { "name": "Changelog", "url": "/utility-pages/changelog" },
+          { "name": "License", "url": "/utility-pages/license" }
+        ],
+        [
+          { "name": "Sign Up", "url": "/user-authentication/sign-up" },
+          { "name": "Sign In", "url": "/user-authentication/sign-in" },
+          { "name": "Password", "url": "/user-authentication/forgot-password" },
+          { "name": "401 Page", "url": "/401" },
+          { "name": "404 page", "url": "/404" }
+        ]
+      ]
+    }
+  },
+  "footer": {
+    "columns": [
+      {
+        "interactionId": "2247d6e4-cd50-ad03-3f4e-63bd2a8b99bb",
+        "links": [
+          { "name": "Home", "url": "/" },
+          { "name": "About", "url": "/about-us" },
+          { "name": "Menu", "url": "/menu" },
+          { "name": "Chef", "url": "/chef" },
+          { "name": "Blog", "url": "/blog" },
+          { "name": "Blog Details", "url": "@latest-blog-post" }
+        ]
+      },
+      {
+        "interactionId": "2247d6e4-cd50-ad03-3f4e-63bd2a8b99c8",
+        "links": [
+          { "name": "Menu Details", "url": "@first-menu-item" },
+          { "name": "Book a Table", "url": "/book-a-table" },
+          { "name": "Style Guide", "url": "/utility-pages/style-guide" },
+          { "name": "Forgot Password", "url": "/user-authentication/forgot-password" },
+          { "name": "Sign In", "url": "/user-authentication/sign-in" },
+          { "name": "Sign Up", "url": "/user-authentication/sign-up" }
+        ]
+      },
+      {
+        "interactionId": "2247d6e4-cd50-ad03-3f4e-63bd2a8b99d3",
+        "links": [
+          { "name": "License", "url": "/utility-pages/license" },
+          { "name": "Changelog", "url": "/utility-pages/changelog" },
+          { "name": "401 Page", "url": "/401" },
+          { "name": "404 Page", "url": "/404" }
+        ]
+      }
+    ],
+    "legal": [
+      { "name": "Privacy policy", "url": "/utility-pages/privacy-policy" },
+      { "name": "Cookies settings", "url": "/utility-pages/cookies-settings" }
+    ]
+  }
+}

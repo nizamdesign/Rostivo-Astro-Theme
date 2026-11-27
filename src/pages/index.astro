@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/home/HeroSection.astro';
+import MenuPreviewSection from '../components/sections/shared/MenuPreviewSection.astro';
+import InteriorSection from '../components/sections/home/InteriorSection.astro';
+import GeneralSection from '../components/sections/home/GeneralSection.astro';
+import TestimonialSection from '../components/sections/home/TestimonialSection.astro';
+import BlogPreviewSection from '../components/sections/shared/BlogPreviewSection.astro';
+import ChefPreviewSection from '../components/sections/shared/ChefPreviewSection.astro';
+import CtaSection from '../components/sections/shared/CtaSection.astro';
+import config from '../config/config.json';
+import { getMenuItems } from '../lib/strapi';
+import { homeSchema } from '../lib/schema';
+
+const dishes = (await getMenuItems()).slice(0, config.menu.previewCount);
+---
+
+<BaseLayout pageId="67148a857bb7c8630bae40e9" jsonLd={homeSchema(Astro.site, dishes)}>
+  <main>
+    <HeroSection />
+    <MenuPreviewSection variant="home" />
+    <InteriorSection />
+    <GeneralSection />
+    <TestimonialSection />
+    <BlogPreviewSection />
+    <ChefPreviewSection />
+    <CtaSection />
+  </main>
+</BaseLayout>

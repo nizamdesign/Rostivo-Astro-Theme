@@ -1,0 +1,4 @@
+/* Theme marker stylesheet: matches no element, so it has no visual effect. */
+[data-astro-build] {
+  color: inherit;
+}

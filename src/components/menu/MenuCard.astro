@@ -1,0 +1,67 @@
+---
+import type { MenuItem } from '../../lib/strapi';
+import { mediaUrl } from '../../lib/strapi';
+import { currentAttrs, dishLabel, menuItemUrl } from '../../lib/utils';
+
+interface Props {
+  item: MenuItem;
+  /** "preview" for the home and about sections, "tab" for the menu tabs. */
+  variant: 'preview' | 'tab';
+  /** Interaction ID of the card (only the first tab of the menu animates its cards). */
+  interactionId?: string;
+}
+
+const { item, variant, interactionId } = Astro.props;
+const href = menuItemUrl(item.slug);
+const current = currentAttrs(href, Astro.url.pathname);
+const src = item.image ? mediaUrl(item.image.url) : undefined;
+const alt = variant === 'preview' ? item.image?.alternativeText || 'Menu Card Image' : item.image?.alternativeText || '';
+---
+
+{variant === 'preview' ? (
+  <div data-w-id="fae46ac3-8a23-a792-2693-f764ca7f9ea0" role="listitem" class="menu-collection-item w-dyn-item">
+    <div class="menu-card-block">
+      <a href={href} aria-current={current.ariaCurrent} class={`menu-card-link w-inline-block${current.currentClass}`}>
+        <div data-w-id="fae46ac3-8a23-a792-2693-f764ca7f9ea4" class="menu-card-element-block">
+          <div class="dish-number-block">
+            <div class="dish-no">{dishLabel(item.dishNumber)}</div>
+          </div>
+          <div class="menu-image-block"><img src={src} loading="lazy" alt={alt} class="menu-card-image" /></div>
+          <div class="menu-card-content-block">
+            <div class="menu-card-text-block">
+              <div class="menu-card-title-block">
+                <h5 class="menu-card-title">{item.title}</h5>
+              </div>
+              <div class="menu-card-description-block">
+                <p class="menu-card-description text-color-white-two">{item.shortDescription}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+) : (
+  <div role="listitem" class="menu-collection-item w-dyn-item">
+    <div data-w-id={interactionId} class="menu-card-block">
+      <a href={href} aria-current={current.ariaCurrent} class={`menu-card-link w-inline-block${current.currentClass}`}>
+        <div class="menu-card-element-block">
+          <div class="dish-number-block">
+            <div class="dish-no">{dishLabel(item.dishNumber)}</div>
+          </div>
+          <div class="menu-image-block"><img loading="lazy" src={src} alt={alt} class="menu-card-image" /></div>
+          <div class="menu-card-content-block">
+            <div class="menu-card-text-block">
+              <div class="menu-card-title-block">
+                <h5 class="menu-card-title">{item.title}</h5>
+              </div>
+              <div class="menu-card-description-block">
+                <p class="menu-card-description text-color-white-two">{item.shortDescription}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+)}

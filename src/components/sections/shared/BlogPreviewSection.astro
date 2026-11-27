@@ -1,0 +1,47 @@
+---
+import BlogList from '../../blog/BlogList.astro';
+import config from '../../../config/config.json';
+import { getBlogPosts } from '../../../lib/strapi';
+
+const posts = (await getBlogPosts()).slice(0, config.blog.previewCount);
+---
+<section class="blog-section is-2">
+  <div class="blog-section-bg is-2">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="blog-wrapper">
+        <div class="blog-section-heading-wrap">
+          <div class="section-title-block max-w-624">
+            <div data-w-id="5d80c4b0-8f41-ee10-19e3-03e0bb129373" class="subtitle-block blogs">
+              <div class="subtitle blogs">
+                <div class="dot primary-color"></div>
+                <div class="subtitle-text text-color-primary">oUR BLOGS</div>
+              </div>
+            </div>
+            <h2 data-w-id="ab557866-5725-0fb0-df4b-d73f5ea25c83" class="section-title text-color-white-two">Your Source for Culinary Inspiration, News, and Tips</h2>
+          </div>
+          <div class="blog-button-block">
+            <a href="/blog" class="spin-button-block right-mg w-inline-block">
+              <div class="spin-button tertiary-hover">
+                <div aria-label="Spin Button Icon" class="spin-button-icon-one w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                    <path d="M0 2.31323L28.8918 2.31323" stroke="currentColor" stroke-width="3.61148"></path>
+                    <path d="M27.5801 29.8918L27.5801 1.00001" stroke="currentColor" stroke-width="3.61148"></path>
+                    <path d="M27.5801 2.31323L1.31477 28.5785" stroke="currentColor" stroke-width="3.61148"></path>
+                  </svg></div>
+                <div aria-label="Button Icon" class="spin-button-icon-two w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                    <path d="M0 2.31323L28.8918 2.31323" stroke="currentColor" stroke-width="3.61148"></path>
+                    <path d="M27.5801 29.8918L27.5801 1.00001" stroke="currentColor" stroke-width="3.61148"></path>
+                    <path d="M27.5801 2.31323L1.31477 28.5785" stroke="currentColor" stroke-width="3.61148"></path>
+                  </svg></div>
+                <div class="spin-button-text blog"></div>
+                <div aria-label="Spin Button Shape" class="spin-button-shape w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 122 127" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                    <path d="M52.2311 5.0557C56.5006 -1.5418 66.1535 -1.54179 70.423 5.05571L72.19 7.7862C74.9763 12.0918 80.3998 13.854 85.1848 12.0085L88.2193 10.8381C95.5513 8.01013 103.361 13.684 102.937 21.531L102.761 24.7786C102.485 29.8997 105.837 34.5133 110.793 35.8327L113.936 36.6695C121.53 38.6912 124.512 47.8717 119.557 53.971L117.506 56.4953C114.272 60.4757 114.272 66.1784 117.506 70.1588L119.557 72.6831C124.512 78.7824 121.53 87.9629 113.936 89.9847L110.793 90.8214C105.837 92.1408 102.485 96.7544 102.761 101.875L102.937 105.123C103.361 112.97 95.5513 118.644 88.2193 115.816L85.1848 114.646C80.3999 112.8 74.9763 114.562 72.19 118.868L70.423 121.598C66.1535 128.196 56.5006 128.196 52.2311 121.598L50.4641 118.868C47.6778 114.562 42.2542 112.8 37.4693 114.646L34.4348 115.816C27.1028 118.644 19.2934 112.97 19.7172 105.123L19.8926 101.875C20.1692 96.7543 16.8173 92.1408 11.8614 90.8214L8.71853 89.9847C1.1246 87.9629 -1.85834 78.7824 3.09691 72.6831L5.14773 70.1588C8.38162 66.1784 8.38161 60.4757 5.14772 56.4953L3.0969 53.971C-1.85835 47.8717 1.12459 38.6912 8.71852 36.6694L11.8614 35.8327C16.8173 34.5133 20.1692 29.8997 19.8926 24.7786L19.7172 21.531C19.2934 13.684 27.1028 8.01013 34.4348 10.8381L37.4693 12.0085C42.2542 13.854 47.6778 12.0918 50.4641 7.78619L52.2311 5.0557Z" fill="currentColor"></path>
+                  </svg></div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <BlogList posts={posts} variant="preview" />
+      </div>
+    </div>
+  </div>
+</section>

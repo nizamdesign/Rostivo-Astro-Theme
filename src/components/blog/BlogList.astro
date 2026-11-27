@@ -1,0 +1,24 @@
+---
+import BlogCard from './BlogCard.astro';
+import type { BlogPost } from '../../lib/strapi';
+
+interface Props {
+  posts: BlogPost[];
+  variant: 'preview' | 'list' | 'related';
+}
+
+const { posts, variant } = Astro.props;
+const wrapperClass = variant === 'list' ? 'blog-collection-list-wrapper is-2 w-dyn-list' : 'blog-collection-list-wrapper w-dyn-list';
+---
+
+<div class={wrapperClass}>
+  {posts.length > 0 ? (
+    <div role="list" class="blog-collection-list w-dyn-items">
+      {posts.map((post) => <BlogCard post={post} variant={variant} />)}
+    </div>
+  ) : (
+    <div class="w-dyn-empty">
+      <div>No items found.</div>
+    </div>
+  )}
+</div>

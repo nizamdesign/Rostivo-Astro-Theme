@@ -1,0 +1,65 @@
+---
+/**
+ * The tabbed menu on the Menu page and each dish page. The first tab lists
+ * every dish; each Menu Category from Strapi adds a tab (ordered by its
+ * "order" field) listing its dishes.
+ */
+import MenuCard from '../../menu/MenuCard.astro';
+import config from '../../../config/config.json';
+import { getMenuCategories, getMenuItems, type MenuItem } from '../../../lib/strapi';
+
+const [items, categories] = await Promise.all([getMenuItems(), getMenuCategories()]);
+
+const tabs: { name: string; label: string; items: MenuItem[] }[] = [
+  { name: 'Tab 2', label: config.menu.allTabLabel, items },
+  ...categories.map((category, i) => ({
+    name: `Tab ${i + 3}`,
+    label: category.name,
+    items: items.filter((item) => item.category?.documentId === category.documentId),
+  })),
+];
+---
+
+<section class="menu-section">
+  <div class="menu-bg shadow">
+    <div class="section-gap top-bttom-margin">
+      <div class="w-layout-blockcontainer container-default w-container">
+        <div class="menu-wrapper">
+          <div class="menu-content-block is-2">
+            <div data-current="Tab 2" data-easing="ease" data-duration-in="300" data-duration-out="100" class="menu-tab-block w-tabs">
+              <div data-w-id="9801cc3c-57b4-f650-98c5-dedff7357004" class="menu-tab-menu w-tab-menu">
+                {tabs.map((tab, i) => (
+                  <a data-w-tab={tab.name} class={`menu-category-button w-inline-block w-tab-link${i === 0 ? ' w--current' : ''}`}>
+                    <div class="menu-button-dot w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 7 6" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                        <circle cx="3.58444" cy="3.00006" r="3" transform="rotate(12.6532 3.58444 3.00006)" fill="currentColor"></circle>
+                      </svg></div>
+                    <div class="menu-category-button-text">{tab.label}</div>
+                  </a>
+                ))}
+              </div>
+              <div class="menu-tab-content w-tab-content">
+                {tabs.map((tab, i) => (
+                  <div data-w-tab={tab.name} class={`menu-tab-pane w-tab-pane${i === 0 ? ' w--tab-active' : ''}`}>
+                    <div class="menu-collection-list-wrapper w-dyn-list">
+                      {tab.items.length > 0 ? (
+                        <div role="list" class="menu-collection-list w-dyn-items">
+                          {tab.items.map((item) => (
+                            <MenuCard item={item} variant="tab" interactionId={i === 0 ? '4b962fc0-a6fb-ea78-96c6-b2649b047645' : undefined} />
+                          ))}
+                        </div>
+                      ) : (
+                        <div class="w-dyn-empty">
+                          <div>No items found.</div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

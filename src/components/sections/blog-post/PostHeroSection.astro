@@ -1,0 +1,46 @@
+---
+import type { BlogPost } from '../../../lib/strapi';
+import { mediaUrl } from '../../../lib/strapi';
+import { formatDate } from '../../../lib/utils';
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+// The post's hero image, or the template's default one.
+const heroSrc = post.heroImage ? mediaUrl(post.heroImage.url) : '/images/Active-Blog-Image.png';
+---
+
+<section class="hero-section">
+  <div class="blog-details-hero-bg">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="blog-hero-content-wrap">
+        <div class="hero-title-block max-w-987">
+          <h1 data-w-id="530c9345-9d14-a1fc-2f26-4627a7fb8690" style="-webkit-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="blog-details-hero-title">{post.title}</h1>
+        </div>
+        <div class="active-blog-wrapper details-page is-2">
+          <div class="active-blog-image-wrap"><img src={heroSrc} loading="lazy" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.8, 1.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.8, 1.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.8, 1.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.8, 1.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" data-w-id="a82b6b00-b33d-0de3-4f33-ee47f4588111" alt={post.heroImage?.alternativeText || 'Active Blog Image'} class="active-blog-image" /></div>
+          <div class="blog-info-wrapper">
+            <div class="blog-info-block">
+              <p class="blog-info-title">Written by</p>
+              <p class="blog-information">{post.author}</p>
+            </div>
+            <div class="blog-info-block">
+              <p class="blog-info-title">Published on</p>
+              <p class="blog-information">{formatDate(post.date)}</p>
+            </div>
+            <div class="blog-info-block">
+              <p class="blog-info-title">Read time</p>
+              <p class="blog-information">{post.readTime}</p>
+            </div>
+            <div class="blog-info-block">
+              <p class="blog-info-title">Category</p>
+              <div class="blog-information">{post.category}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

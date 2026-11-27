@@ -1,0 +1,64 @@
+{
+  "site": {
+    "name": "Rostivo",
+    "title": "Rostivo - Astro Restaurant Website Template",
+    "titleSeparator": " || ",
+    "description": "Rostivo is a modern, elegant Astro template designed for restaurants, cafés, bistros, and food businesses. With refined typography, smooth interactions, and a visually rich layout, Rostivo helps you showcase your cuisine, highlight your chefs, and turn visitors into reservations.",
+    "lang": "en",
+    "ogImage": "/images/open-graph-image-1.png",
+    "favicon": "/images/favicon.svg",
+    "appleTouchIcon": "/images/webclip.svg"
+  },
+  "restaurant": {
+    "name": "Rystro",
+    "description": "Experience exquisite flavors and unforgettable dining moments at Rystro, where modern design meets timeless charm.",
+    "servesCuisine": "Fine Dining",
+    "logo": "/images/rystro_logo.svg"
+  },
+  "forms": {
+    "newsletter": {
+      "action": "",
+      "method": "post"
+    },
+    "reservation": {
+      "action": "",
+      "method": "post"
+    },
+    "signIn": {
+      "action": "",
+      "method": "post"
+    },
+    "signUp": {
+      "action": "",
+      "method": "post"
+    },
+    "forgotPassword": {
+      "action": "",
+      "method": "post"
+    },
+    "password": {
+      "action": "",
+      "method": "post"
+    }
+  },
+  "menu": {
+    "basePath": "/menu",
+    "allTabLabel": "Signature Creations",
+    "previewCount": 3
+  },
+  "blog": {
+    "basePath": "/blog-post",
+    "previewCount": 3,
+    "relatedCount": 3
+  },
+  "footer": {
+    "designer": {
+      "label": "Glimix Studio",
+      "url": "https://glimix.studio/"
+    },
+    "poweredBy": {
+      "label": "Astro",
+      "url": "https://astro.build"
+    }
+  }
+}

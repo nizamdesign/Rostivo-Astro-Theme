@@ -1,0 +1,86 @@
+---
+import config from '../config/config.json';
+import menu from '../config/menu.json';
+import { currentAttrs, formAttrs, resolveUrl } from '../lib/utils';
+
+interface Props {
+  /** Interaction page ID of the page, stamped on every form. */
+  pageId: string;
+}
+
+const { pageId } = Astro.props;
+const path = Astro.url.pathname;
+const home = currentAttrs('/', path);
+const { designer, poweredBy } = config.footer;
+
+const columns = await Promise.all(
+  menu.footer.columns.map(async (column) => ({
+    ...column,
+    links: await Promise.all(column.links.map(async (link) => ({ ...link, url: await resolveUrl(link.url) }))),
+  })),
+);
+---
+
+<footer class="footer">
+  <div class="spacer"></div>
+  <section class="footer-section">
+    <div class="footer-bg">
+      <div class="w-layout-blockcontainer container-default w-container">
+        <div class="footer-content-wrap">
+          <div class="footer-upper-content-block">
+            <div class="footer-leftside">
+              <div data-w-id="2247d6e4-cd50-ad03-3f4e-63bd2a8b999d" class="footer-logo-wrapper">
+                <div class="footer-logo-block">
+                  <a href="/" aria-current={home.ariaCurrent} class={`footer-logo-link w-inline-block${home.currentClass}`}><img src="/images/Footer-Logo.svg" loading="lazy" alt="Footer Logo" class="footer-logo" /></a>
+                </div>
+                <div class="footer-searchber-wrap">
+                  <div class="footer-searchber-block w-form">
+                    <form id="newsletter-form" name="newsletter-form" data-name="Newsletter Form" {...formAttrs('newsletter')} class="footer-searchber" data-wf-page-id={pageId} data-wf-element-id="2247d6e4-cd50-ad03-3f4e-63bd2a8b99a2"><label for="Your-Email" class="field-label">Subscribe to our newsletter</label>
+                      <div class="footer-button-block"><input type="submit" data-wait="Please wait..." class="primary-button footer-button w-button" value="Subscribe" /></div><input class="form-field w-input" maxlength="256" name="Your-Email" data-name="Your Email" placeholder="Enter your e-mail" type="email" id="Your-Email" required="" />
+                    </form>
+                    <div class="w-form-done">
+                      <div>Thank you! Your submission has been received!</div>
+                    </div>
+                    <div class="w-form-fail">
+                      <div>Oops! Something went wrong while submitting the form.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="footer-rightside">
+              <div class="footer-link-block">
+                {columns.map((column) => (
+                  <div data-w-id={column.interactionId} class="footer-link-column">
+                    {column.links.map((link) => {
+                      const c = currentAttrs(link.url, path);
+                      return <a href={link.url} aria-current={c.ariaCurrent} class={`footer-link${c.currentClass}`}>{link.name}</a>;
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div data-w-id="2aaf49d8-f083-dd44-579d-b14c018ef64b" class="footer-bottom-content-block">
+            <div class="footer-bottom-leftside-block">
+              <div id="w-node-_3d084059-8b9e-25bd-1ee2-c292f3bc87e4-2a8b9997" class="footer-bottom-leftside-link-block">
+                <p class="footer-text hover-none">Design by <a href={designer.url} target="_blank" rel="noopener" class="footer-link-text">{designer.label}</a> - Powered by  <a href={poweredBy.url} target="_blank" rel="noopener" class="footer-link-text">{poweredBy.label}</a>
+                </p>
+              </div>
+            </div>
+            <div class="footer-bottom-rightside-block">
+              {menu.footer.legal.map((link) => {
+                const c = currentAttrs(link.url, path);
+                return (
+                  <a href={link.url} aria-current={c.ariaCurrent} class={`footer-link-text w-inline-block${c.currentClass}`}>
+                    <p class="footer-text">{link.name}</p>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>

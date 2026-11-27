@@ -1,0 +1,24 @@
+---
+/** Hero of the License, Changelog, Privacy Policy and Cookies Settings pages. */
+interface Props {
+  title: string;
+  description: string;
+  /** "secondary" gives the description a wider block (License page). */
+  variant?: 'primary' | 'secondary';
+}
+
+const { title, description, variant = 'primary' } = Astro.props;
+---
+
+<section data-wf--utility-hero-section--variant={variant} class="utility-hero-section">
+  <div class="utility-hero-bg">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="utility-hero-wrapper">
+        <div class="hero-title-block"><h1 data-w-id="33dd4a05-8554-928d-166f-34a3ba1fa83f" class="page-intro-text text-color-white-two">{title}</h1></div>
+        <div class={`hero-description-block${variant === 'secondary' ? ' w-variant-bb686239-1c58-be56-eebe-d3cea33b0c00' : ''}`}>
+          <p data-w-id="33dd4a05-8554-928d-166f-34a3ba1fa842" class="body-text-sm text-color-white-two align-middle">{description}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

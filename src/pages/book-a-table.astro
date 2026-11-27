@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ReservationSection from '../components/sections/book-a-table/ReservationSection.astro';
+import CtaSection from '../components/sections/shared/CtaSection.astro';
+import { bookTableSchema } from '../lib/schema';
+---
+
+<BaseLayout title="Book a Table" pageId="67148b0f39aea195fda3670e" jsonLd={bookTableSchema(Astro.site)}>
+  <main class="main">
+    <ReservationSection />
+    <CtaSection />
+  </main>
+</BaseLayout>
