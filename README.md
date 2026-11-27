@@ -105,6 +105,10 @@ Pages are built statically, so publish changes by rebuilding. In production, add
 
 If `STRAPI_URL` is set but Strapi cannot be reached during a build, the lists show the theme's empty state ("No items found.") and no dish or post pages are generated. The build itself does not fail.
 
+## Deploying
+
+`npm run build` writes a static site to `dist/`. Pages are built as `about-us.html` and so on, served at extensionless URLs (`/about-us`). `vercel.json` turns on clean URLs for Vercel; Netlify and most static hosts do this by default. Set `SITE_URL` (and `STRAPI_URL` if you use Strapi) in the host's environment variables.
+
 ## Animations and interactions
 
 Scroll, load and hover animations, the full-screen menu, the Pages dropdown and the menu tabs run on the theme's interaction runtime in `public/js/interactions.js` (with jQuery). It looks up each page's animations by the `pageId` passed to `BaseLayout`, so keep those values as they are. A new page that reuses existing sections can take the `pageId` of the page those sections came from. The `interactionId` values in `menu.json` keep each navigation link's hover animation.
